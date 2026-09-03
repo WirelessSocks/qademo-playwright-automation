@@ -38,3 +38,18 @@ test('AUTH-003: locked user cannot login', async ({ page }) => {
 
   await expect(page).toHaveURL(/login/);
 });
+
+test('AUTH-004: user can logout', async ({ page }) => {
+  await page.goto('/login');
+  await page.getByLabel('Username').fill('standard_user');
+  await page.getByLabel('Password').fill('standard123');
+
+  await page.getByTestId('login-submit-button').click();
+
+  await expect(page.getByTestId('navbar-username-link')).toBeVisible();
+
+  await page.getByTestId('navbar-logout-button').click();
+
+  await expect(page.getByTestId('hero-signin-button')).toBeVisible();
+  await expect(page.getByTestId('hero-signin-button')).toHaveText('Sign In');
+});
