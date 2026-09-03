@@ -26,3 +26,15 @@ test('AUTH-002: login with invalid password', async ({ page }) => {
 
   await expect(page).toHaveURL(/login/);
 });
+
+test('AUTH-003: locked user cannot login', async ({ page }) => {
+  await page.goto('/login');
+  await page.getByLabel('Username').fill('locked_user');
+  await page.getByLabel('Password').fill('locked123');
+
+  await page.getByTestId('login-submit-button').click();
+
+  await expect(page.getByTestId('login-error-message')).toHaveText('Account is locked');
+
+  await expect(page).toHaveURL(/login/);
+});
