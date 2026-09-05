@@ -3,20 +3,24 @@ class ProductsPage {
     this.page = page;
 
     this.productDetailName = page.getByTestId('product-detail-name');
-    this.productAddToCartButton = page.getByTestId('product-add-to-cart-button');
-    this.backToCatalogButton = page.getByTestId('product-bak-to-catalog');
+    this.productDetailAddToCartButton = page.getByTestId('product-add-to-cart-button');
+    this.backToCatalogButton = page.getByTestId('product-back-to-catalog');
   }
 
   productLink(productId) {
-    return this.page.getByTestId('product-link-${productId}');
+    return this.page.getByTestId(`product-link-${productId}`);
   }
 
-  async openProduct() {
-    await this.product.click();
+  async openProduct(productId) {
+    await this.productLink(productId).click();
   }
 
   async addProductToCart() {
-    await this.addToCartButton.click();
+    await this.productDetailAddToCartButton.click();
+  }
+
+  async backToCatalog() {
+    await this.backToCatalogButton.click();
   }
 }
 
