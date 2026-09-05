@@ -1,7 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const {
-  LoginPage,
-} = require('/Users/master/Documents/VSCode/qademo-playwright-automation/pages/LoginPage');
+const { LoginPage } = require('../pages/LoginPage');
 const { HomePage } = require('../pages/HomePage');
 // Предусловие: пользователь находится на странице Login
 // Действие: вводит валидные credentials и нажимает Login
