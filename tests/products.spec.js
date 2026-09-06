@@ -26,4 +26,7 @@ test('PRODUCTS-002: user can add product to cart', async ({ page }) => {
   await expect(productPage.productDetailName).toBeVisible();
 
   await productPage.addProductToCart();
+
+  await expect(productPage.removeFromCartButton).toBeVisible();
+  await expect(productPage.viewCartButton).toBeVisible();
 });

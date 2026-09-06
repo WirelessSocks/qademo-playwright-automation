@@ -5,6 +5,8 @@ class ProductsPage {
     this.productDetailName = page.getByTestId('product-detail-name');
     this.productDetailAddToCartButton = page.getByTestId('product-add-to-cart-button');
     this.backToCatalogButton = page.getByTestId('product-back-to-catalog');
+    this.removeFromCartButton = page.getByTestId('product-remove-from-cart-button');
+    this.viewCartButton = page.getByTestId('product-view-cart-button');
   }
 
   productLink(productId) {
