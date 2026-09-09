@@ -50,3 +50,23 @@ test('CART-001; added product appears in cart', async ({ page }) => {
   await expect(cartPage.produtQuantity).toBeVisible();
   await expect(cartPage.orderTotal).toBeVisible();
 });
+
+test('CART-002:user can remove product from cart', async ({ page }) => {
+  const cartPage = new CartPage(page);
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductsPage(page);
+
+  await loginPage.open();
+  await loginPage.login('standard_user', 'standard123');
+
+  await productPage.openProduct(4);
+  await expect(productPage.productDetailName).toBeVisible();
+
+  await productPage.addProductToCart();
+  await productPage.viewCartButton.click();
+
+  await expect(cartPage.productName).toBeVisible();
+  await cartPage.removeProduct();
+
+  await expect(cartPage.emptyCartHeading).toBeVisible();
+});
